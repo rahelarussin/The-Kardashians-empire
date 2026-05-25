@@ -366,9 +366,13 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
 
         {/* Section 3: Brands and Industries */}
         <div className="flex flex-col gap-1.5">
-          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1">
-            <span>✦ BRENDOVI & INDUSTRIJA</span>
+          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1 flex items-center justify-between">
+            <span>✦ UTJECAJ NA INDUSTRIJU / BRENDOVI</span>
+            <span className="opacity-45 text-[7px]">KRUG</span>
           </div>
+          <p className="text-[8.5px] text-brand-stone/70 leading-normal italic mb-1">
+            Milijunski brendovi i inovacije u modi, kozmetici i marketingu. Kliknite pojedinu osobu za detaljan prikaz njihovog utjecaja!
+          </p>
           <div className="grid grid-cols-1 gap-1.5">
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full bg-[#FEE2E2] border border-[#FCA5A5] shrink-0" />
