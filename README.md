@@ -1,34 +1,34 @@
-# Kardashian-Jenner Dynasty Mapping
+# Mapiranje dinastije Kardashian-Jenner
 
-![Kardashian-Jenner Network Ecosystem Banner](./src/assets/images/network_banner_1779712781136.png)
+![Kardashian-Jenner mrežni ekosustav](./src/assets/images/network_banner_1779712781136.png)
 
-An interactive digital network analysis of the Kardashian-Jenner ecosystem, exploring the intersections of reality television, global commerce, and humanitarian advocacy.
+Interaktivna digitalna mrežna analiza ekosustava Kardashian-Jenner koja istražuje sjecišta reality televizije, globalne trgovine i humanitarnog rada.
 
-## Project Overview
+## Pregled projekta
 
-This application utilizes a force-directed graph (D3.js) within a React framework to visualize the complex relationships between the Kardashian-Jenner family members, their businesses, and their social impact.
+Ova aplikacija koristi mrežni graf usmjeren silom (D3.js) unutar React okvira za vizualizaciju složenih odnosa između članova obitelji Kardashian-Jenner, njihovih tvrtki i njihovog društvenog utjecaja.
 
-### Key Visual & Functional Pillars
-- **Dynamic Physics Simulation**: Real-time graph simulation managing repulsion and attraction between nodes.
-- **Categorized Hubs**:
-  - **Adult Person Nodes (Parents)**: Key family figures represented by larger human glyphs (Kris, Kim, Khloé, Kourtney, Kendall, Kylie, etc.).
-  - **Children (Grandchildren)**: Represented by smaller human glyphs to visually depict generational hierarchies dynamically.
-  - **Company Nodes**: Multi-billion dollar ventures (SKIMS, Kylie Cosmetics, Good American, etc.).
-  - **Industry Nodes**: Segmentation into Beauty, Fashion, Beverages, and Media.
-  - **Cause Nodes**: Visualization of philanthropic and cultural impact, modeled as rounded squares for clear visual division.
-- **Real-Time Financial Valuation (Net Worth)**: Major family leaders have their estimated net worth (e.g., $1.7B, $710M) displayed in clean, high-contrast dark badgesOffset adjacent to their node icons on the graph canvas.
+### Ključni vizualni i funkcionalni stupovi
+- **Dinamička fizikalna simulacija**: Simulacija grafa u stvarnom vremenu koja upravlja odbijanjem i privlačenjem između čvorova.
+- **Kategorizirana središta (Hubovi)**:
+  - **Čvorovi odraslih osoba (Roditelji)**: Ključne obiteljske ličnosti predstavljene većim ljudskim prikazima (Kris, Kim, Khloé, Kourtney, Kendall, Kylie, itd.).
+  - **Djeca (Unuci)**: Predstavljeni manjim ljudskim prikazima za dinamički i vizualni prikaz generacijske hijerarhije.
+  - **Čvorovi tvrtki**: Višemilijunski i višemilijarderski poslovni pothvati (SKIMS, Kylie Cosmetics, Good American, itd.).
+  - **Čvorovi industrija**: Podjela na ljepotu i kozmetiku, modu, pića i medije.
+  - **Čvorovi ciljeva/uzroka**: Vizualizacija filantropskog i kulturnog utjecaja, modelirana kao zaobljeni kvadrati radi jasne vizualne podjele.
+- **Financijska procjena vrijednosti u stvarnom vremenu (Net Worth)**: Glavni obiteljski predvodnici imaju svoju procijenjenu neto vrijednost (npr. $1,7 milijardi, $710 milijuna) prikazanu u čistim, visokokontrastnim tamnim kvadratima pored svojih ikona na mrežnom grafu.
 
-## Visual Identity & Redesigned Legend
+## Vizualni identitet i redizajnirana legenda
 
-The interface is built on a "Nude & Clay" aesthetic, reflecting the family's signature branding, punctuated by high-contrast neon accents. The sidebar legend has been fully group-categorized for enhanced clarity:
-1. **✦ Odrasli Članovi**: Parents/founders with distinct house colors and Net Worth labels.
-2. **✦ Djeca (Mlađi Naraštaj)**: Generational descendants represented by smaller scale glyphs (e.g., North, Stormi, Penelope).
-3. **✦ Brendovi & Industrija (Krug)**: Categorized business ventures showing market innovation in fashion, beauty, cosmetics, and beverages.
-4. **✦ Humanitarnost & Utjecaj (Kocka)**: Philanthropic work across legal reform, environmental advocacy, and clean-living advocacy.
+Sučelje je izgrađeno na profinjenoj 'Nude & Clay' (boja kože i gline) estetici, odražavajući prepoznatljivi brending obitelji, naglašeno visokokontrastnim neonskim akcentima i prekrasnom blago rozom pozadinom s elegantnim vodenim žigom dinastije u pozadini. Bočna legenda u potpunosti je kategorizirana po grupama radi veće jasnoće:
+1. **✦ Odrasli Članovi**: Roditelji i osnivači s prepoznatljivim bojama obitelji i oznakama Neto vrijednosti (Net Worth).
+2. **✦ Djeca (Mlađi Naraštaj)**: Generacijski potomci predstavljeni manjim proporcijama (npr. North, Stormi, Penelope).
+3. **✦ Brendovi & Industrija (Krug)**: Kategorizirani poslovni pothvati koji prikazuju tržišne inovacije u modi, ljepoti, kozmetici i pićima.
+4. **✦ Humanitarnost & Utjecaj (Kocka)**: Filantropski projekti u rasponu od pravosudne reforme, ekološkog aktivizma do zagovaranja zdravog wellness načina života.
 
 ## Detaljni profili članova dinastije (Profili, djeca, brendovi i utjecaj)
 
-Ovdje se nalazi detaljan pregled svakog lika u ekosustavu, s njihovom procijenjenom neto vrijednošću (Net Worth), djecom, brendovima koje su stvorili te humanitarnim radom:
+Ovdje se nalazi detaljan pregled svakog lika u ekosustavu, s njihovom procijenjenom neto vrijednošću (Net Worth), potomcima, brendovima koje su stvorili te humanitarnim radom:
 
 ---
 
@@ -85,7 +85,7 @@ Ovdje se nalazi detaljan pregled svakog lika u ekosustavu, s njihovom procijenje
   - *Kylie Skin* (proizvodi za njegu kože).
   - *Kylie Baby* (sigurni i čisti proizvodi za bebe).
   - *Kendall + Kylie* (zajednička modna linija sa sestrom Kendall).
-* **Utjecaj na industriju:** Prepoznata od strane Forbesa kao najmlađa "self-made" milijarderka u povijesti zahvaljujući kozmetičkom carstvu. Samostalno je redefinirala koncept izravne prodaje (DTC) putem platformi društvenih medija te postavila standarde modernog influencer-marketinga.
+* **Utjecaj na industriju:** Prepoznana od strane Forbesa kao najmlađa "self-made" milijarderka u povijesti zahvaljujući kozmetičkom carstvu. Samostalno je redefinirala koncept izravne prodaje (DTC) putem platformi društvenih medija te postavila standarde modernog influencer-marketinga.
 * **Partneri:** Travis Scott (bivši partner).
 * **Humanitarni rad:** Glavna ambasadorica međunarodne organizacije *Smile Train* kojoj donira značajan dio profita za osiguravanje besplatnih operacija rascjepa usne i nepca za djecu diljem svijeta, te velika donatorica *Teen Cancer America*.
 
@@ -138,18 +138,18 @@ Ovdje se nalazi detaljan pregled svakog lika u ekosustavu, s njihovom procijenje
 
 ---
 
-## Technical Architecture
+## Tehnička arhitektura
 
-- **Frontend**: React 18+ powered by Vite.
-- **Visualization**: D3.js for the core relationship engine and SVG rendering.
-- **Styling**: Tailwind CSS for a modern, responsive layout with glassmorphism effects.
-- **Data Model**: A relational TypeScript structure defined in `src/data.ts`.
+- **Klijentski dio (Frontend)**: React 18+ koji pokreće iznimno brzi Vite.
+- **Vizualizacija**: D3.js za osnovni mehanizam odnosa i SVG iscrtavanje.
+- **Stiliziranje**: Tailwind CSS za moderan, responzivan izgled s efektima stakla (glassmorphism).
+- **Model podataka**: Relacijska TypeScript struktura definirana u datoteci `src/data.ts`.
 
-## Scientific Context
+## Znanstveni i kulturološki kontekst
 
-This project serves as a digital humanities study into "Network Centrality" within celebrity culture. It maps how reality TV prominence translates into structural influence across global industries and social reforms.
+Ovaj projekt služi kao digitalna humanistička studija o 'mrežnoj centralnosti' (Network Centrality) unutar kulture slavnih osoba. Mapira kako se istaknutost u reality televiziji prevodi u strukturni utjecaj na globalne industrije i društvene reforme.
 
-Detailed analysis can be found in the `/report/report_1.md` file.
+Detaljna analiza može se pronaći u datoteci `/report/report_1.md`.
 
 ---
-*Created as a digital representation of media, commerce, and philanthropy.*
+*Kreirano kao digitalni prikaz medija, trgovine i filantropije.*

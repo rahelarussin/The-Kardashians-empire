@@ -101,6 +101,163 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       .attr('stroke-width', (d) => (d.relation === RelationType.PARENT_OF ? 2 : 1))
       .attr('stroke-dasharray', (d) => (d.relation === RelationType.IN_INDUSTRY ? '4,4' : 'none'));
 
+    const getNodeEmoji = (d: Node) => {
+      // Parents & Principal family members
+      if (d.isKris) return "👑"; // The Momager
+      if (d.id === "Kim Kardashian") return "💎"; // SKIMS, Diamonds
+      if (d.id === "Kylie Jenner") return "💄"; // Kylie Cosmetics
+      if (d.id === "Kendall Jenner") return "👠"; // Supermodel
+      if (d.id === "Khloe Kardashian") return "🌟"; // Good American, Star
+      if (d.id === "Kourtney Kardashian") return "🧘"; // Poosh, Wellness
+      if (d.id === "Rob Kardashian") return "🧦"; // Arthur George
+      if (d.isRobert) return "💼"; // Attorney Robert G. Kardashian
+      if (d.isCaitlyn) return "🏅"; // Olympic decathlete
+      
+      // Other well-known people
+      if (d.id === "Kanye West") return "🎤";
+      if (d.id === "Scott Disick") return "🥂";
+      if (d.id === "Travis Barker") return "🥁";
+      if (d.id === "Tristan Thompson" || d.id === "Lamar Odom" || d.id === "Devin Booker") return "🏀";
+      if (d.id === "Tyga" || d.id === "Travis Scott") return "🎶";
+      
+      // Children (grandchildren)
+      if (d.isChild) return "👶";
+
+      // Companies / Brands
+      if (d.type === NodeType.COMPANY) {
+        if (d.id.includes("SKIMS") || d.id.includes("Good American") || d.id.includes("DASH")) return "👗";
+        if (d.id.includes("Kylie Cosmetics") || d.id.includes("Kylie Skin") || d.id.includes("KKW Beauty") || d.id.includes("SKKN") || d.id.includes("Fragrance")) return "💄";
+        if (d.id.includes("818 Tequila")) return "🍹";
+        if (d.id.includes("Lemme") || d.id.includes("Poosh")) return "🌿";
+        if (d.id.includes("Arthur George")) return "🧦";
+        if (d.id.includes("The Kardashians") || d.id.includes("Podcast") || d.id.includes("Khloud")) return "🎬";
+        return "🏢";
+      }
+
+      // Causes / Humanitarian Advocacy
+      if (d.type === NodeType.CAUSE) {
+        if (d.id.includes("Reforma") || d.id.includes("Pravosuđa") || d.id.includes("Justice") || d.id.includes("Innocence")) return "⚖️";
+        if (d.id.includes("Aktivizam u medicini") || d.id.includes("Onkološka") || d.id.includes("Cancer")) return "🏥";
+        if (d.id.includes("Smile Train") || d.id.includes("Dječj") || d.id.includes("Kids")) return "❤️";
+        if (d.id.includes("Voda") || d.id.includes("water")) return "💧";
+        if (d.id.includes("Kulturološki") || d.id.includes("Cultural") || d.id.includes("Kimoji")) return "✨";
+        if (d.id.includes("Kozmet") || d.id.includes("Wellness")) return "🌿";
+        return "💝";
+      }
+
+      // Industries
+      if (d.type === NodeType.INDUSTRY) {
+        if (d.id.includes("Kozmetika") || d.id.includes("Moda") || d.id.includes("Beauty") || d.id.includes("Fashion")) return "💅";
+        if (d.id.includes("Medij") || d.id.includes("Kultura") || d.id.includes("Media")) return "📢";
+        if (d.id.includes("Pića") || d.id.includes("Beverages")) return "🥂";
+        return "🏷️";
+      }
+
+      return "";
+    };
+
+    const handleMouseOver = (event: any, d: D3Node) => {
+      // Find connected nodes
+      const connectedNodeIds = new Set<string>();
+      connectedNodeIds.add(d.id);
+      
+      links.forEach((l: any) => {
+        const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+        const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+        if (sourceId === d.id) {
+          connectedNodeIds.add(targetId);
+        } else if (targetId === d.id) {
+          connectedNodeIds.add(sourceId);
+        }
+      });
+
+      // Highlight connections beautifully via transitions
+      link.transition()
+        .duration(200)
+        .attr('stroke-opacity', (l: any) => {
+          const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+          const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+          return (sourceId === d.id || targetId === d.id) ? 1.0 : 0.15;
+        })
+        .attr('stroke-width', (l: any) => {
+          const sourceId = typeof l.source === 'object' ? l.source.id : l.source;
+          const targetId = typeof l.target === 'object' ? l.target.id : l.target;
+          return (sourceId === d.id || targetId === d.id) ? 3 : (l.relation === RelationType.PARENT_OF ? 2 : 1);
+        });
+
+      // Softly dim out unconnected nodes, fully opaque connected nodes
+      node.transition()
+        .duration(200)
+        .style('opacity', (n: any) => connectedNodeIds.has(n.id) ? 1.0 : 0.2);
+
+      // Enlarge the hovered node's shapes slightly
+      const selection = d3.select(event.currentTarget);
+      
+      selection.select('path')
+        .transition()
+        .duration(200)
+        .attr('transform', (n: any) => n.isChild ? 'scale(0.85)' : 'scale(1.2)');
+
+      selection.select('circle')
+        .transition()
+        .duration(200)
+        .attr('r', (n: any) => n.type === NodeType.COMPANY ? 19 : 15);
+
+      selection.select('rect')
+        .transition()
+        .duration(200)
+        .attr('width', 26)
+        .attr('height', 26)
+        .attr('x', -13)
+        .attr('y', -13);
+
+      selection.selectAll('text')
+        .transition()
+        .duration(200)
+        .attr('font-size', '12px')
+        .attr('font-weight', '700');
+    };
+
+    const handleMouseOut = (event: any, d: D3Node) => {
+      // Revert link transitions
+      link.transition()
+        .duration(200)
+        .attr('stroke-opacity', 0.6)
+        .attr('stroke-width', (l: any) => (l.relation === RelationType.PARENT_OF ? 2 : 1));
+
+      // Revert nodes transitions
+      node.transition()
+        .duration(200)
+        .style('opacity', 1.0);
+
+      // Revert hovered node scale/styling
+      const selection = d3.select(event.currentTarget);
+
+      selection.select('path')
+        .transition()
+        .duration(200)
+        .attr('transform', (n: any) => n.isChild ? 'scale(0.7)' : 'scale(1)');
+
+      selection.select('circle')
+        .transition()
+        .duration(200)
+        .attr('r', (n: any) => n.type === NodeType.COMPANY ? 15 : 12);
+
+      selection.select('rect')
+        .transition()
+        .duration(200)
+        .attr('width', 22)
+        .attr('height', 22)
+        .attr('x', -11)
+        .attr('y', -11);
+
+      selection.selectAll('text')
+        .transition()
+        .duration(200)
+        .attr('font-size', '10px')
+        .attr('font-weight', (n: any) => (n.type === NodeType.PERSON ? '600' : '400'));
+    };
+
     const node = g.append('g')
       .selectAll('.node')
       .data(nodes)
@@ -114,6 +271,8 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
         event.stopPropagation();
         onNodeClick(d);
       })
+      .on('mouseenter', handleMouseOver)
+      .on('mouseleave', handleMouseOut)
       .style('cursor', 'pointer');
 
     const getNodeFill = (d: Node) => {
@@ -210,8 +369,29 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       .attr('stroke', (d) => getNodeStroke(d))
       .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
 
+    // Outline text layer for perfect text legibility on pink/white backgrounds
     node.append('text')
-      .text((d) => d.id)
+      .text((d) => {
+        const emoji = getNodeEmoji(d);
+        return emoji ? `${emoji} ${d.id}` : d.id;
+      })
+      .attr('dy', (d) => (d.type === NodeType.PERSON && d.isChild) ? 25 : 35)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '10px')
+      .attr('font-family', 'Inter, sans-serif')
+      .attr('font-weight', (d) => (d.type === NodeType.PERSON ? '600' : '400'))
+      .attr('fill', 'none')
+      .attr('stroke', '#FFF0F3') // Matches the background color beautifully
+      .attr('stroke-width', 3)
+      .attr('stroke-linejoin', 'round')
+      .attr('pointer-events', 'none');
+
+    // True text layer
+    node.append('text')
+      .text((d) => {
+        const emoji = getNodeEmoji(d);
+        return emoji ? `${emoji} ${d.id}` : d.id;
+      })
       .attr('dy', (d) => (d.type === NodeType.PERSON && d.isChild) ? 25 : 35)
       .attr('text-anchor', 'middle')
       .attr('font-size', '10px')
