@@ -281,8 +281,15 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
   }, [dimensions, data, selectedNode, onNodeClick]);
 
   return (
-    <div ref={containerRef} className="w-full h-full relative overflow-hidden bg-[#FAF9F6] cursor-grab active:cursor-grabbing">
-      <svg ref={svgRef} className="w-full h-full" />
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden bg-[#FFF0F3] cursor-grab active:cursor-grabbing">
+      {/* Background Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 p-4">
+        <h1 className="text-white font-serif italic text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight text-center leading-none max-w-2xl select-none">
+          The Kardashians family
+        </h1>
+      </div>
+      
+      <svg ref={svgRef} className="w-full h-full relative z-1" />
       
       {/* Legend */}
       <div className="absolute top-4 left-4 flex flex-col gap-3.5 pointer-events-auto p-3.5 bg-white/75 backdrop-blur-md rounded-2xl border border-white/50 shadow-md overflow-y-auto max-h-[calc(100%-2rem)] w-[240px] sm:w-[260px] cursor-default select-none z-10 transition-all">
