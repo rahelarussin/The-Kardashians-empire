@@ -11,19 +11,20 @@ This application utilizes a force-directed graph (D3.js) within a React framewor
 ### Key Visual & Functional Pillars
 - **Dynamic Physics Simulation**: Real-time graph simulation managing repulsion and attraction between nodes.
 - **Categorized Hubs**:
-  - **Person Nodes**: Key family figures (Kris, Kim, Khloé, Kourtney, Kendall, Kylie, etc.).
+  - **Adult Person Nodes (Parents)**: Key family figures represented by larger human glyphs (Kris, Kim, Khloé, Kourtney, Kendall, Kylie, etc.).
+  - **Children (Grandchildren)**: Represented by smaller human glyphs to visually depict generational hierarchies dynamically.
   - **Company Nodes**: Multi-billion dollar ventures (SKIMS, Kylie Cosmetics, Good American, etc.).
   - **Industry Nodes**: Segmentation into Beauty, Fashion, Beverages, and Media.
-  - **Cause Nodes**: Visualization of philanthropic and cultural impact.
+  - **Cause Nodes**: Visualization of philanthropic and cultural impact, modeled as rounded squares for clear visual division.
+- **Real-Time Financial Valuation (Net Worth)**: Major family leaders have their estimated net worth (e.g., $1.7B, $710M) displayed in clean, high-contrast dark badgesOffset adjacent to their node icons on the graph canvas.
 
-## Visual Identity
+## Visual Identity & Redesigned Legend
 
-The interface is built on a "Nude & Clay" aesthetic, reflecting the family's signature branding, punctuated by high-contrast neon accents:
-- **Neon Pink**: Kylie's advocacy and humanitarian work.
-- **Neon Orange**: Kendall's global advocacy.
-- **Neon Yellow**: Khloé's humanitarian efforts.
-- **Light Red/Pink**: Kim's legal reform work and cultural impact.
-- **Gradient (Yellow-Red-Purple)**: Representing the DASH legacy and its multi-sister origins.
+The interface is built on a "Nude & Clay" aesthetic, reflecting the family's signature branding, punctuated by high-contrast neon accents. The sidebar legend has been fully group-categorized for enhanced clarity:
+1. **✦ Odrasli Članovi**: Parents/founders with distinct house colors and Net Worth labels.
+2. **✦ Djeca (Mlađi Naraštaj)**: Generational descendants represented by smaller scale glyphs (e.g., North, Stormi, Penelope).
+3. **✦ Brendovi & Industrija (Krug)**: Categorized business ventures showing market innovation in fashion, beauty, cosmetics, and beverages.
+4. **✦ Humanitarnost & Utjecaj (Kocka)**: Philanthropic work across legal reform, environmental advocacy, and clean-living advocacy.
 
 ## Technical Architecture
 
