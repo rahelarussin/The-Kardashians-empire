@@ -17,6 +17,7 @@ export interface Node {
   id: string;
   type: NodeType;
   group?: number;
+  isChild?: boolean;
   isKourtneyFamily?: boolean;
   isKourtneyProduct?: boolean;
   isKylieFamily?: boolean;
@@ -159,19 +160,19 @@ export const DATA: NetworkData = {
     { id: "Scott Disick", type: NodeType.PERSON, isKourtneyFamily: true },
     { id: "Travis Barker", type: NodeType.PERSON, isKourtneyFamily: true },
     { id: "Blac Chyna", type: NodeType.PERSON, isRobFamily: true },
-    { id: "Dream Kardashian", type: NodeType.PERSON, isRobFamily: true },
-    { id: "Stormi Webster", type: NodeType.PERSON, isKylieFamily: true },
-    { id: "Mason Disick", type: NodeType.PERSON, isKourtneyFamily: true },
-    { id: "Penelope Disick", type: NodeType.PERSON, isKourtneyFamily: true },
-    { id: "Reign Disick", type: NodeType.PERSON, isKourtneyFamily: true },
-    { id: "Rocky Barker", type: NodeType.PERSON, isKourtneyFamily: true },
-    { id: "Aire Webster", type: NodeType.PERSON, isKylieFamily: true },
-    { id: "True Thompson", type: NodeType.PERSON, isKhloeFamily: true },
-    { id: "Tatum Thompson", type: NodeType.PERSON, isKhloeFamily: true },
-    { id: "North West", type: NodeType.PERSON, isKimFamily: true },
-    { id: "Saint West", type: NodeType.PERSON, isKimFamily: true },
-    { id: "Chicago West", type: NodeType.PERSON, isKimFamily: true },
-    { id: "Psalm West", type: NodeType.PERSON, isKimFamily: true },
+    { id: "Dream Kardashian", type: NodeType.PERSON, isRobFamily: true, isChild: true },
+    { id: "Stormi Webster", type: NodeType.PERSON, isKylieFamily: true, isChild: true },
+    { id: "Mason Disick", type: NodeType.PERSON, isKourtneyFamily: true, isChild: true },
+    { id: "Penelope Disick", type: NodeType.PERSON, isKourtneyFamily: true, isChild: true },
+    { id: "Reign Disick", type: NodeType.PERSON, isKourtneyFamily: true, isChild: true },
+    { id: "Rocky Barker", type: NodeType.PERSON, isKourtneyFamily: true, isChild: true },
+    { id: "Aire Webster", type: NodeType.PERSON, isKylieFamily: true, isChild: true },
+    { id: "True Thompson", type: NodeType.PERSON, isKhloeFamily: true, isChild: true },
+    { id: "Tatum Thompson", type: NodeType.PERSON, isKhloeFamily: true, isChild: true },
+    { id: "North West", type: NodeType.PERSON, isKimFamily: true, isChild: true },
+    { id: "Saint West", type: NodeType.PERSON, isKimFamily: true, isChild: true },
+    { id: "Chicago West", type: NodeType.PERSON, isKimFamily: true, isChild: true },
+    { id: "Psalm West", type: NodeType.PERSON, isKimFamily: true, isChild: true },
     { id: "Kris Humphries", type: NodeType.PERSON, isKimFamily: true },
     // Companies
     { id: "SKIMS", type: NodeType.COMPANY, isKimProduct: true },

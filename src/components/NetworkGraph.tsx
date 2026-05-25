@@ -182,9 +182,10 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
     node.filter((d) => d.type === NodeType.PERSON)
       .append('path')
       .attr('d', "M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5")
+      .attr('transform', (d) => d.isChild ? 'scale(0.7)' : 'scale(1)')
       .attr('fill', (d) => getNodeFill(d))
       .attr('stroke', (d) => getNodeStroke(d))
-      .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
+      .attr('stroke-width', (d) => (selectedNode?.id === d.id ? (d.isChild ? 3 / 0.7 : 3) : (d.isChild ? 1.5 / 0.7 : 1.5)));
 
     // Render humanitarian / cause nodes as squares (kocka)
     node.filter((d) => d.type === NodeType.CAUSE)
@@ -211,7 +212,7 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
 
     node.append('text')
       .text((d) => d.id)
-      .attr('dy', 35)
+      .attr('dy', (d) => (d.type === NodeType.PERSON && d.isChild) ? 25 : 35)
       .attr('text-anchor', 'middle')
       .attr('font-size', '10px')
       .attr('font-family', 'Inter, sans-serif')
@@ -261,7 +262,13 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
           <svg className="w-3 h-3 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
             <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
           </svg>
-          <span className="text-[9px] font-extrabold uppercase tracking-wider text-brand-stone">OSOBE (ČOVJEČULJAK)</span>
+          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Roditelji (Veći čovječuljak)</span>
+        </div>
+        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
+          <svg className="w-2.5 h-2.5 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
+            <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
+          </svg>
+          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Djeca (Manji čovječuljak)</span>
         </div>
         <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
           <div className="w-2.5 h-2.5 bg-brand-stone rounded-xs" />
