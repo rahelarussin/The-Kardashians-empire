@@ -42,6 +42,11 @@ export interface Node {
   isKendallKylie?: boolean;
   isDashGradient?: boolean;
   isKimKylieImpact?: boolean;
+  achievements?: {
+    industry?: string;
+    humanitarian?: string;
+    general?: string;
+  };
 }
 
 export interface Link {
@@ -58,15 +63,96 @@ export interface NetworkData {
 export const DATA: NetworkData = {
   nodes: [
     // People
-    { id: "Kris Jenner", type: NodeType.PERSON, isKris: true },
-    { id: "Robert Kardashian", type: NodeType.PERSON, isRobert: true },
-    { id: "Caitlyn Jenner", type: NodeType.PERSON, isCaitlyn: true },
-    { id: "Kim Kardashian", type: NodeType.PERSON, isKimFamily: true },
-    { id: "Kourtney Kardashian", type: NodeType.PERSON, isKourtneyFamily: true },
-    { id: "Khloe Kardashian", type: NodeType.PERSON, isKhloeFamily: true },
-    { id: "Rob Kardashian", type: NodeType.PERSON, isRobFamily: true },
-    { id: "Kendall Jenner", type: NodeType.PERSON, isKendallFamily: true },
-    { id: "Kylie Jenner", type: NodeType.PERSON, isKylieFamily: true },
+    { 
+      id: "Kris Jenner", 
+      type: NodeType.PERSON, 
+      isKris: true,
+      achievements: {
+        industry: "Pionirka reality TV formata i genijalna menadžerica ('momager') koja je pretvorila obiteljski brend u globalno poslovno carstvo vrijedno milijarde dolara. Vodila je pregovore za 'Keeping Up with the Kardashians' i 'The Kardashians' te bila ključni pokretač poslovnih pothvata svojih kćeri.",
+        humanitarian: "Aktivno podržava rad dječjih bolnica, donira zakladama za borbu protiv raka, te redovito osigurava resurse i hranu za pučke kuhinje u Los Angelesu.",
+        general: "Glava obitelji i arhitektica brenda Kardashian-Jenner."
+      }
+    },
+    { 
+      id: "Robert Kardashian", 
+      type: NodeType.PERSON, 
+      isRobert: true,
+      achievements: {
+        industry: "Poznati američki odvjetnik i poduzetnik čija je obrana u suđenju stoljeća (O.J. Simpson) utemeljila modernu eru medijske fascinacije pravosuđem i slavnim osobama.",
+        humanitarian: "Sudjelovao u osiguravanju pravne pomoći ugroženim skupinama i podržavao dobrotvorne zaklade posvećene zdravlju i obrazovanju.",
+        general: "Otac Kourtney, Kim, Khloe i Roba, u čije je sjećanje osnovana Specijalna onkološka klinika Robert G. Kardashian na UCLA."
+      }
+    },
+    { 
+      id: "Caitlyn Jenner", 
+      type: NodeType.PERSON, 
+      isCaitlyn: true,
+      achievements: {
+        industry: "Osvajačica zlatne olimpijske medalje u desetoboju čiji je sportski uspjeh poslužio kao temelj za desetljeća uspješne televizijske kultne prisutnosti i motivacijskog govorništva.",
+        humanitarian: "Jedna od najistaknutijih figura u borbi za prava i vidljivost transrodnih osoba na globalnoj razini, dobitnica nagrade Arthur Ashe Courage Award.",
+        general: "Olimpijska legenda i zagovornica LGBTQ+ prava."
+      }
+    },
+    { 
+      id: "Kim Kardashian", 
+      type: NodeType.PERSON, 
+      isKimFamily: true,
+      achievements: {
+        industry: "Redefinirala je modernu modnu industriju i oblik oblikovanja tijela kroz SKIMS (brend procijenjen na više od 4 milijarde dolara koji je srušio barijere u inkluzivnosti veličina). Također je uvela trendove konturiranja i postavila standarde moderne kozmetike i estetike.",
+        humanitarian: "Istaknuta aktivistica za reformu pravosuđa. Surađuje sa zakladom 'Innocence Project', stopostotno financira rad odvjetničkih timova koji su oslobodili desetke nepravedno osuđenih osoba i uspješno lobira za zakonske reforme u Bijeloj kući.",
+        general: "Globalni fenomen, poduzetnica i buduća odvjetnica."
+      }
+    },
+    { 
+      id: "Kourtney Kardashian", 
+      type: NodeType.PERSON, 
+      isKourtneyFamily: true,
+      achievements: {
+        industry: "Predvodnica u promicanju čistog i zdravog načina života (clean lifestyle). Kroz svoj portal Poosh i brend dodataka prehrani Lemme uspješno je spojila wellness industriju s pop-kulturnom estetikom i podigla svijest o ekološkoj kozmetici.",
+        humanitarian: "Pionirka u lobiranju pred američkim Kongresom za uvođenje strožih zakona o ispitivanju i regulaciji sastojaka u kozmetičkim proizvodima, štiteći zdravlje potrošača.",
+        general: "Strastvena zagovornica zdravog života i wellness ikona."
+      }
+    },
+    { 
+      id: "Khloe Kardashian", 
+      type: NodeType.PERSON, 
+      isKhloeFamily: true,
+      achievements: {
+        industry: "Suosnivačica modne marke Good American, koja je revolucionirala modnu maloprodaju zahtijevajući da sve veličine budu izložene zajedno, čime je postala globalni simbol 'body positivity' pokreta.",
+        humanitarian: "Redovito donira dječjim bolnicama širom SAD-a, pokreće i financira kampanje protiv zlostavljanja na internetu (cyberbullying) te se bori za žensko osnaživanje.",
+        general: "Poduzetnica pod sloganom 'Good American' i promotorica inkluzivnosti tijela."
+      }
+    },
+    { 
+      id: "Rob Kardashian", 
+      type: NodeType.PERSON, 
+      isRobFamily: true,
+      achievements: {
+        industry: "Osnivač brenda šaljivih i luksuznih čarapa 'Arthur George' i brendova hrane, pokazujući da se obiteljski poduzetnički duh može primijeniti i na kreativne modne niše.",
+        humanitarian: "Podržava i sudjeluje u obiteljskim inicijativama za donacije dječjim bolnicama i medicinskim istraživanjima.",
+        general: "Dizajner čarapa i sin obitelji Kardashian."
+      }
+    },
+    { 
+      id: "Kendall Jenner", 
+      type: NodeType.PERSON, 
+      isKendallFamily: true,
+      achievements: {
+        industry: "Jedan od najplaćenijih svjetskih supermodela visoke mode. Samostalno je osnovala brend '818 Tequila' koji je osvojio brojne nagrade za održivost i kvalitetu, te podigao standarde eko-svjesne proizvodnje u Meksiku.",
+        humanitarian: "Aktivna ambasadorica i donatorica neprofitne organizacije 'charity: water' za osiguravanje pitke vode u zemljama u razvoju, te sponzorira dječje onkološke odjele.",
+        general: "Ikona svjetske mode i uspješna poduzetnica."
+      }
+    },
+    { 
+      id: "Kylie Jenner", 
+      type: NodeType.PERSON, 
+      isKylieFamily: true,
+      achievements: {
+        industry: "Prepoznana kao najmlađa 'self-made' milijarderka u povijesti od strane Forbesa zahvaljujući brendu Kylie Cosmetics. Samostalno je kreirala koncept izravne prodaje putem društvenih mreža i oblikovala moderni koncept influencer-marketinga.",
+        humanitarian: "Glavna ambasadorica organizacije 'Smile Train' kojoj donira dio profita od prodaje za financiranje besplatnih operacija rascjepa usne i nepca za djecu diljem svijeta, te velika donatorica organizacije Teen Cancer America.",
+        general: "Ikona estetske industrije i osnivačica carstva Kylie Cosmetics."
+      }
+    },
     { id: "Kanye West", type: NodeType.PERSON, isKylieFamily: false, isKimFamily: true },
     { id: "Travis Scott", type: NodeType.PERSON, isKylieFamily: true },
     { id: "Tristan Thompson", type: NodeType.PERSON, isKhloeFamily: true },

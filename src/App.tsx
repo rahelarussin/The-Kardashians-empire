@@ -227,14 +227,60 @@ export default function App() {
                   </section>
                 )}
 
-                {/* Decorative Bio Section */}
-                <section>
-                  <h3 className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold opacity-40 mb-4">
-                    <Info className="w-3 h-3" /> Details
-                  </h3>
-                  <p className="text-sm leading-relaxed opacity-70">
-                    A key figure in the {selectedNode.type} landscape, maintaining a complex web of strategic partnerships and family legacies that define modern digital celebrity culture.
-                  </p>
+                {/* Bio & Achievements Section */}
+                <section className="space-y-6">
+                  {selectedNode.achievements ? (
+                    <div className="space-y-6">
+                      {selectedNode.achievements.general && (
+                        <div>
+                          <h3 className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">
+                            <Info className="w-3 h-3" /> Općenito
+                          </h3>
+                          <p className="text-sm leading-relaxed opacity-85 italic font-serif">
+                            "{selectedNode.achievements.general}"
+                          </p>
+                        </div>
+                      )}
+
+                      {selectedNode.achievements.industry && (
+                        <div className="p-4 bg-brand-clay/5 rounded-2xl border border-brand-clay/15">
+                          <h4 className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold text-brand-stone/70 mb-2">
+                            <Briefcase className="w-3.5 h-3.5 text-brand-clay" /> Utjecaj na Industriju
+                          </h4>
+                          <p className="text-xs leading-relaxed opacity-80">
+                            {selectedNode.achievements.industry}
+                          </p>
+                        </div>
+                      )}
+
+                      {selectedNode.achievements.humanitarian && (
+                        <div className="p-4 bg-brand-clay/5 rounded-2xl border border-brand-clay/15">
+                          <h4 className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-semibold text-brand-stone/70 mb-2">
+                            <Users className="w-3.5 h-3.5 text-brand-clay" /> Humanitarnost & Aktivizam
+                          </h4>
+                          <p className="text-xs leading-relaxed opacity-80">
+                            {selectedNode.achievements.humanitarian}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div>
+                      <h3 className="flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold opacity-40 mb-3">
+                        <Info className="w-3 h-3" /> Detalji
+                      </h3>
+                      <p className="text-sm leading-relaxed opacity-70">
+                        {selectedNode.type === NodeType.PERSON 
+                          ? `Član šireg obiteljskog ili poslovnog kruga obitelji Kardashian-Jenner.`
+                          : selectedNode.type === NodeType.COMPANY 
+                          ? `Istaknuta tvrtka u vlasništvu, partnerstvu ili suosnivačkom odnosu s članovima obitelji Kardashian-Jenner.`
+                          : selectedNode.type === NodeType.CAUSE 
+                          ? `Dobrotvorna akcija, društveni pokret ili kulturni fenomen potaknut ili podržan djelovanjem ove dinastije.`
+                          : `Sektor i tržišna niša u kojoj se prožimaju mediji, moda, ljepota i globalni utjecaj obitelji.`
+                        }
+                      </p>
+                    </div>
+                  )}
                 </section>
               </div>
 
