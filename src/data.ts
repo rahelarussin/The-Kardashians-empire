@@ -43,6 +43,7 @@ export interface Node {
   isKendallKylie?: boolean;
   isDashGradient?: boolean;
   isKimKylieImpact?: boolean;
+  netWorth?: string;
   achievements?: {
     industry?: string;
     humanitarian?: string;
@@ -68,6 +69,7 @@ export const DATA: NetworkData = {
       id: "Kris Jenner", 
       type: NodeType.PERSON, 
       isKris: true,
+      netWorth: "$170M",
       achievements: {
         industry: "Pionirka reality TV formata i genijalna menadžerica ('momager') koja je pretvorila obiteljski brend u globalno poslovno carstvo vrijedno milijarde dolara. Vodila je pregovore za 'Keeping Up with the Kardashians' i 'The Kardashians' te bila ključni pokretač poslovnih pothvata svojih kćeri.",
         humanitarian: "Aktivno podržava rad dječjih bolnica, donira zakladama za borbu protiv raka, te redovito osigurava resurse i hranu za pučke kuhinje u Los Angelesu.",
@@ -98,6 +100,7 @@ export const DATA: NetworkData = {
       id: "Kim Kardashian", 
       type: NodeType.PERSON, 
       isKimFamily: true,
+      netWorth: "$1.7B",
       achievements: {
         industry: "Redefinirala je modernu modnu industriju i oblik oblikovanja tijela kroz SKIMS (brend procijenjen na više od 4 milijarde dolara koji je srušio barijere u inkluzivnosti veličina). Također je uvela trendove konturiranja i postavila standarde moderne kozmetike i estetike.",
         humanitarian: "Istaknuta aktivistica za reformu pravosuđa. Surađuje sa zakladom 'Innocence Project', stopostotno financira rad odvjetničkih timova koji su oslobodili desetke nepravedno osuđenih osoba i uspješno lobira za zakonske reforme u Bijeloj kući.",
@@ -108,6 +111,7 @@ export const DATA: NetworkData = {
       id: "Kourtney Kardashian", 
       type: NodeType.PERSON, 
       isKourtneyFamily: true,
+      netWorth: "$65M",
       achievements: {
         industry: "Predvodnica u promicanju čistog i zdravog načina života (clean lifestyle). Kroz svoj portal Poosh i brend dodataka prehrani Lemme uspješno je spojila wellness industriju s pop-kulturnom estetikom i podigla svijest o ekološkoj kozmetici.",
         humanitarian: "Pionirka u lobiranju pred američkim Kongresom za uvođenje strožih zakona o ispitivanju i regulaciji sastojaka u kozmetičkim proizvodima, štiteći zdravlje potrošača.",
@@ -118,6 +122,7 @@ export const DATA: NetworkData = {
       id: "Khloe Kardashian", 
       type: NodeType.PERSON, 
       isKhloeFamily: true,
+      netWorth: "$60M",
       achievements: {
         industry: "Suosnivačica modne marke Good American, koja je revolucionirala modnu maloprodaju zahtijevajući da sve veličine budu izložene zajedno, čime je postala globalni simbol 'body positivity' pokreta.",
         humanitarian: "Redovito donira dječjim bolnicama širom SAD-a, pokreće i financira kampanje protiv zlostavljanja na internetu (cyberbullying) te se bori za žensko osnaživanje.",
@@ -128,6 +133,7 @@ export const DATA: NetworkData = {
       id: "Rob Kardashian", 
       type: NodeType.PERSON, 
       isRobFamily: true,
+      netWorth: "$10M",
       achievements: {
         industry: "Osnivač brenda šaljivih i luksuznih čarapa 'Arthur George' i brendova hrane, pokazujući da se obiteljski poduzetnički duh može primijeniti i na kreativne modne niše.",
         humanitarian: "Podržava i sudjeluje u obiteljskim inicijativama za donacije dječjim bolnicama i medicinskim istraživanjima.",
@@ -138,6 +144,7 @@ export const DATA: NetworkData = {
       id: "Kendall Jenner", 
       type: NodeType.PERSON, 
       isKendallFamily: true,
+      netWorth: "$60M",
       achievements: {
         industry: "Jedan od najplaćenijih svjetskih supermodela visoke mode. Samostalno je osnovala brend '818 Tequila' koji je osvojio brojne nagrade za održivost i kvalitetu, te podigao standarde eko-svjesne proizvodnje u Meksiku.",
         humanitarian: "Aktivna ambasadorica i donatorica neprofitne organizacije 'charity: water' za osiguravanje pitke vode u zemljama u razvoju, te sponzorira dječje onkološke odjele.",
@@ -148,6 +155,7 @@ export const DATA: NetworkData = {
       id: "Kylie Jenner", 
       type: NodeType.PERSON, 
       isKylieFamily: true,
+      netWorth: "$710M",
       achievements: {
         industry: "Prepoznana kao najmlađa 'self-made' milijarderka u povijesti od strane Forbesa zahvaljujući brendu Kylie Cosmetics. Samostalno je kreirala koncept izravne prodaje putem društvenih mreža i oblikovala moderni koncept influencer-marketinga.",
         humanitarian: "Glavna ambasadorica organizacije 'Smile Train' kojoj donira dio profita od prodaje za financiranje besplatnih operacija rascjepa usne i nepca za djecu diljem svijeta, te velika donatorica organizacije Teen Cancer America.",

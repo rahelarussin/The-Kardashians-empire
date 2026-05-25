@@ -169,6 +169,11 @@ export default function App() {
                   </span>
                 </div>
                 <h2 className="font-serif text-4xl font-bold leading-tight italic">{selectedNode.id}</h2>
+                {selectedNode.netWorth && (
+                  <div className="inline-flex items-center gap-1.5 mt-2.5 px-3 py-1 bg-brand-stone text-white text-[10px] font-mono font-bold uppercase tracking-wider rounded-md">
+                    Net Worth / Neto vrijednost: {selectedNode.netWorth}
+                  </div>
+                )}
               </div>
 
               <div className="flex-1 overflow-y-auto p-8 space-y-10">

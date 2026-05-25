@@ -220,6 +220,34 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       .attr('fill', '#000000')
       .attr('pointer-events', 'none');
 
+    // Render net worth badges for family members who have a defined net worth next to their icon
+    const netWorthNodes = node.filter((d) => d.type === NodeType.PERSON && !!d.netWorth);
+
+    const netWorthBadge = netWorthNodes.append('g')
+      .attr('class', 'net-worth-badge')
+      .attr('transform', 'translate(14, -14)');
+
+    netWorthBadge.append('rect')
+      .attr('x', -15)
+      .attr('y', -6)
+      .attr('width', 30)
+      .attr('height', 12)
+      .attr('rx', 2.5)
+      .attr('fill', '#0F172A')
+      .attr('stroke', '#FFFFFF')
+      .attr('stroke-width', 1);
+
+    netWorthBadge.append('text')
+      .text((d) => d.netWorth || '')
+      .attr('x', 0)
+      .attr('y', 3)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '7px')
+      .attr('font-family', 'JetBrains Mono, monospace')
+      .attr('font-weight', '700')
+      .attr('fill', '#FFFFFF')
+      .attr('pointer-events', 'none');
+
     simulation.on('tick', () => {
       link
         .attr('x1', (d: any) => d.source.x)
@@ -269,6 +297,12 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
             <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
           </svg>
           <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Djeca (Manji čovječuljak)</span>
+        </div>
+        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
+          <div className="w-5 h-3.5 bg-[#0F172A] border border-[white] rounded flex items-center justify-center shrink-0">
+            <span className="text-[6px] text-white font-mono font-bold leading-none">$M</span>
+          </div>
+          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Prosječni Net Worth</span>
         </div>
         <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
           <div className="w-2.5 h-2.5 bg-brand-stone rounded-xs" />
