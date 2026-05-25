@@ -116,72 +116,85 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       })
       .style('cursor', 'pointer');
 
-    node.append('circle')
+    const getNodeFill = (d: Node) => {
+      if (d.isKimKylieImpact) return '#FF91A4'; // Light red-pink for cultural impact
+      if (d.isDashGradient) return 'url(#dashGradient)';
+      if (d.isKendallKylie) return '#FF8C69'; // Coral / Pink-Orange
+      if (d.isKimLightRed) return '#FFCDCD'; // More pale light red
+      if (d.isKylieHumanitarian) return '#FF10F0'; // Neon Pink for Kylie's advocacy
+      if (d.isKendallHumanitarian) return '#FF5F1F'; // Neon Orange for Kendall's advocacy
+      if (d.isKhloeYellow) return '#FEF9C3'; // Light yellow (Tailwind yellow-100)
+      if (d.isKhloeHumanitarian) return '#FAFF00'; // Neon Yellow for Khloe's work
+      if (d.isKourtneyHumanitarian) return '#FF00FF'; // Neon Magenta for wellness work
+      if (d.isKimHumanitarian) return '#FF3131'; // Neon Red for humanitarian work
+      if (d.isRobert) return '#6B7280'; // Grey for Robert
+      if (d.isCaitlyn) return '#FF2D55'; // Neon Coral for Caitlyn
+      if (d.isKris) return '#000000'; // Black for Kris
+      if (d.isRobProduct) return '#DBEAFE'; // Light blue for brands
+      if (d.isRobFamily) return '#2563EB'; // Dark blue for names
+      if (d.isKhloeProduct) return '#FEF9C3'; // Light yellow for Khloe's brands
+      if (d.isKhloeFamily) return '#EAB308'; // Dark yellow for Khloe's family
+      if (d.isKendallProduct) return '#FFEDD5'; // Light orange for Kendall's brands
+      if (d.isKendallFamily) return '#F97316'; // Dark orange for Kendall
+      if (d.isKimProduct) return '#FEE2E2'; // Light red for Kim's brands
+      if (d.isKimFamily) return '#B91C1C'; // Dark red for Kim's family
+      if (d.isKylieProduct) return '#FCE7F3'; // Light pink for brands
+      if (d.isKylieFamily) return '#DB2777'; // Dark pink for names
+      if (d.isKourtneyProduct) return '#EBE4F5'; // Soft purple for brands
+      if (d.isKourtneyFamily) return '#7C5295'; // Dark purple for names
+      if (d.type === NodeType.PERSON) return '#D5BDAF'; // Darker nude for names
+      if (d.type === NodeType.COMPANY) return '#F5EBE0'; // Lighter nude for companies
+      return '#EDEDED';
+    };
+
+    const getNodeStroke = (d: Node) => {
+      if (selectedNode?.id === d.id) return '#4A4A4A';
+      if (d.isKimKylieImpact) return '#FF69B4'; // Hot pink stroke
+      if (d.isDashGradient) return '#000000'; // Black stroke for gradient
+      if (d.isKendallKylie) return '#FF1493'; // Deep Pink stroke for contrast
+      if (d.isKimLightRed) return '#FF7F7F'; // Stroke matches old fill for better visibility
+      if (d.isKylieHumanitarian) return '#00FFFF'; // Contrast cyan stroke
+      if (d.isKendallHumanitarian) return '#39FF14'; // Neon Lime stroke for Kendall's orange
+      if (d.isKhloeYellow) return '#FACC15'; // Darker yellow stroke
+      if (d.isKhloeHumanitarian) return '#000000'; // Black stroke for yellow contrast
+      if (d.isKourtneyHumanitarian) return '#00FFFF'; // Neon Cyan stroke for "glitter"
+      if (d.isKimHumanitarian) return '#39FF14'; // Neon Lime stroke for "glitter" effect
+      if (d.isRobert) return '#374151';
+      if (d.isCaitlyn) return '#E01E44';
+      if (d.isKris) return '#000000';
+      if (d.isRobProduct) return '#BFDBFE'; // Light blue stroke
+      if (d.isRobFamily) return '#1E3A8A'; // Dark blue stroke
+      if (d.isKhloeProduct) return '#FEF08A'; // Light yellow stroke
+      if (d.isKhloeFamily) return '#854D0E'; // Dark yellow stroke
+      if (d.isKendallProduct) return '#FED7AA'; // Light orange stroke
+      if (d.isKendallFamily) return '#9A3412'; // Dark orange stroke
+      if (d.isKimProduct) return '#FCA5A5'; // Light red stroke
+      if (d.isKimFamily) return '#7F1D1D'; // Dark red stroke
+      if (d.isKylieProduct) return '#F9A8D4'; // Light pink stroke
+      if (d.isKylieFamily) return '#9D174D'; // Dark pink stroke
+      if (d.isKourtneyProduct) return '#C8B6E2'; // Soft purple stroke
+      if (d.isKourtneyFamily) return '#4B2C5E'; // Dark purple stroke
+      if (d.type === NodeType.PERSON) return '#A68A7B'; // Darker stroke for names
+      return '#CCC';
+    };
+
+    // Render person nodes as human silhouette path
+    node.filter((d) => d.type === NodeType.PERSON)
+      .append('path')
+      .attr('d', "M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5")
+      .attr('fill', (d) => getNodeFill(d))
+      .attr('stroke', (d) => getNodeStroke(d))
+      .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
+
+    // Render non-person nodes as circles
+    node.filter((d) => d.type !== NodeType.PERSON)
+      .append('circle')
       .attr('r', (d) => {
-        if (d.type === NodeType.PERSON) return 20;
         if (d.type === NodeType.COMPANY) return 15;
         return 12;
       })
-      .attr('fill', (d) => {
-        if (d.isKimKylieImpact) return '#FF91A4'; // Light red-pink for cultural impact
-        if (d.isDashGradient) return 'url(#dashGradient)';
-        if (d.isKendallKylie) return '#FF8C69'; // Coral / Pink-Orange
-        if (d.isKimLightRed) return '#FFCDCD'; // More pale light red
-        if (d.isKylieHumanitarian) return '#FF10F0'; // Neon Pink for Kylie's advocacy
-        if (d.isKendallHumanitarian) return '#FF5F1F'; // Neon Orange for Kendall's advocacy
-        if (d.isKhloeYellow) return '#FEF9C3'; // Light yellow (Tailwind yellow-100)
-        if (d.isKhloeHumanitarian) return '#FAFF00'; // Neon Yellow for Khloe's work
-        if (d.isKourtneyHumanitarian) return '#FF00FF'; // Neon Magenta for wellness work
-        if (d.isKimHumanitarian) return '#FF3131'; // Neon Red for humanitarian work
-        if (d.isRobert) return '#6B7280'; // Grey for Robert
-        if (d.isCaitlyn) return '#FF2D55'; // Neon Coral for Caitlyn
-        if (d.isKris) return '#000000'; // Black for Kris
-        if (d.isRobProduct) return '#DBEAFE'; // Light blue for brands
-        if (d.isRobFamily) return '#2563EB'; // Dark blue for names
-        if (d.isKhloeProduct) return '#FEF9C3'; // Light yellow for Khloe's brands
-        if (d.isKhloeFamily) return '#EAB308'; // Dark yellow for Khloe's family
-        if (d.isKendallProduct) return '#FFEDD5'; // Light orange for Kendall's brands
-        if (d.isKendallFamily) return '#F97316'; // Dark orange for Kendall
-        if (d.isKimProduct) return '#FEE2E2'; // Light red for Kim's brands
-        if (d.isKimFamily) return '#B91C1C'; // Dark red for Kim's family
-        if (d.isKylieProduct) return '#FCE7F3'; // Light pink for brands
-        if (d.isKylieFamily) return '#DB2777'; // Dark pink for names
-        if (d.isKourtneyProduct) return '#EBE4F5'; // Soft purple for brands
-        if (d.isKourtneyFamily) return '#7C5295'; // Dark purple for names
-        if (d.type === NodeType.PERSON) return '#D5BDAF'; // Darker nude for names
-        if (d.type === NodeType.COMPANY) return '#F5EBE0'; // Lighter nude for companies
-        return '#EDEDED';
-      })
-      .attr('stroke', (d) => {
-        if (selectedNode?.id === d.id) return '#4A4A4A';
-        if (d.isKimKylieImpact) return '#FF69B4'; // Hot pink stroke
-        if (d.isDashGradient) return '#000000'; // Black stroke for gradient
-        if (d.isKendallKylie) return '#FF1493'; // Deep Pink stroke for contrast
-        if (d.isKimLightRed) return '#FF7F7F'; // Stroke matches old fill for better visibility
-        if (d.isKylieHumanitarian) return '#00FFFF'; // Contrast cyan stroke
-        if (d.isKendallHumanitarian) return '#39FF14'; // Neon Lime stroke for Kendall's orange
-        if (d.isKhloeYellow) return '#FACC15'; // Darker yellow stroke
-        if (d.isKhloeHumanitarian) return '#000000'; // Black stroke for yellow contrast
-        if (d.isKourtneyHumanitarian) return '#00FFFF'; // Neon Cyan stroke for "glitter"
-        if (d.isKimHumanitarian) return '#39FF14'; // Neon Lime stroke for "glitter" effect
-        if (d.isRobert) return '#374151';
-        if (d.isCaitlyn) return '#E01E44';
-        if (d.isKris) return '#000000';
-        if (d.isRobProduct) return '#BFDBFE'; // Light blue stroke
-        if (d.isRobFamily) return '#1E3A8A'; // Dark blue stroke
-        if (d.isKhloeProduct) return '#FEF08A'; // Light yellow stroke
-        if (d.isKhloeFamily) return '#854D0E'; // Dark yellow stroke
-        if (d.isKendallProduct) return '#FED7AA'; // Light orange stroke
-        if (d.isKendallFamily) return '#9A3412'; // Dark orange stroke
-        if (d.isKimProduct) return '#FCA5A5'; // Light red stroke
-        if (d.isKimFamily) return '#7F1D1D'; // Dark red stroke
-        if (d.isKylieProduct) return '#F9A8D4'; // Light pink stroke
-        if (d.isKylieFamily) return '#9D174D'; // Dark pink stroke
-        if (d.isKourtneyProduct) return '#C8B6E2'; // Soft purple stroke
-        if (d.isKourtneyFamily) return '#4B2C5E'; // Dark purple stroke
-        if (d.type === NodeType.PERSON) return '#A68A7B'; // Darker stroke for names
-        return '#CCC';
-      })
+      .attr('fill', (d) => getNodeFill(d))
+      .attr('stroke', (d) => getNodeStroke(d))
       .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
 
     node.append('text')
@@ -231,118 +244,124 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       <svg ref={svgRef} className="w-full h-full" />
       
       {/* Legend */}
-      <div className="absolute top-6 left-6 flex flex-col gap-3 pointer-events-none p-4 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 shadow-sm overflow-y-auto max-h-[calc(100%-3rem)]">
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF91A4] border-2 border-[#FF69B4]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF69B4]">Cultural Impact (Pink-Red)</span>
+      <div className="absolute top-4 left-4 flex flex-col gap-1.5 pointer-events-none p-2.5 bg-white/50 backdrop-blur-md rounded-xl border border-white/50 shadow-sm overflow-y-auto max-h-[calc(100%-2rem)] max-w-[200px] sm:max-w-[240px]">
+        <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
+          <svg className="w-3 h-3 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
+            <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
+          </svg>
+          <span className="text-[9px] font-extrabold uppercase tracking-wider text-brand-stone">OSOBE (ČOVJEČULJAK)</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full border-2 border-black" style={{ background: 'linear-gradient(135deg, #FAFF00 0%, #FF3131 50%, #FF00FF 100%)' }} />
-          <span className="text-xs font-bold uppercase tracking-widest text-black">DASH (Yellow-Red-Purple)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF91A4] border border-[#FF69B4]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF69B4]">Cultural Impact</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF8C69] border-2 border-[#FF1493]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF8C69]">Kendall + Kylie (Pink-Orange)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full border border-black" style={{ background: 'linear-gradient(135deg, #FAFF00 0%, #FF3131 50%, #FF00FF 100%)' }} />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-black">DASH</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FFCDCD] border-2 border-[#FF7F7F]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B91C1C]">Kimoji & Fragrance (Light Red)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF8C69] border border-[#FF1493]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF8C69]">Kendall + Kylie</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF10F0] border-2 border-[#00FFFF]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF10F0]">Kylie Advocacy (Neon Pink)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FFCDCD] border border-[#FF7F7F]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#B91C1C]">Kimoji & Fragrance</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF5F1F] border-2 border-[#39FF14]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF5F1F]">Kendall Advocacy (Neon Orange)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF10F0] border border-[#00FFFF]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF10F0]">Kylie Advocacy</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FEF9C3] border-2 border-[#FACC15]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#A16207]">Podcast & Khloud (Khloé - Yel.)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F1F] border border-[#39FF14]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF5F1F]">Kendall Advocacy</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FAFF00] border-2 border-[#000000]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#EAB308]">Khloé Advocacy (Neon Yellow)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FACC15]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#A16207]">Khloud & Podcast</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF00FF] border-2 border-[#00FFFF]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF00FF]">Health & Wellness (Advocacy)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FAFF00] border border-[#000000]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#EAB308]">Khloé Advocacy</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF3131] border-2 border-[#39FF14]" />
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF3131]">Humanitarian (Advocacy)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF00FF] border border-[#00FFFF]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF00FF]">Wellness Advocacy</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#000000] border border-[#000000]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-90">The Momager (Kris Jenner)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF3131] border border-[#39FF14]" />
+          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF3131]">Humanitarian Advocacy</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#6B7280] border border-[#374151]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Robert Sr. (Grey)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#000000] border border-[#000000]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-90 text-[black]">The Momager (Kris)</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FF2D55] border border-[#E01E44]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Caitlyn (Neon Coral)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#6B7280] border border-[#374151]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Robert Sr.</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#2563EB] border border-[#1E3A8A]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Rob & Family (Blue)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FF2D55] border border-[#E01E44]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Caitlyn</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#DBEAFE] border border-[#BFDBFE]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Arthur George (Light Blue)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#2563EB] border border-[#1E3A8A]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Rob & Family</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#EAB308] border border-[#854D0E]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Khloe & Family (Yellow)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#DBEAFE] border border-[#BFDBFE]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Arthur George</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FEF9C3] border border-[#FEF08A]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Good American (Light Yellow)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#EAB308] border border-[#854D0E]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Khloe & Family</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#F97316] border border-[#9A3412]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Kendall (Orange)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FEF08A]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Good American</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FFEDD5] border border-[#FED7AA]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">818 Tequila (Light Orange)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#F97316] border border-[#9A3412]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kendall</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#B91C1C] border border-[#7F1D1D]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Kim & Family (Red)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FFEDD5] border border-[#FED7AA]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">818 Tequila</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FEE2E2] border border-[#FCA5A5]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">SKIMS / SKKN (Light Red)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#B91C1C] border border-[#7F1D1D]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kim & Family</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#7C5295] border border-[#4B2C5E]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Kourtney & Family (Purple)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FEE2E2] border border-[#FCA5A5]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">SKIMS / SKKN</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#EBE4F5] border border-[#C8B6E2]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Poosh / Lemme (Light Purple)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#7C5295] border border-[#4B2C5E]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kourtney & Family</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#DB2777] border border-[#9D174D]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Kylie (Names)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#EBE4F5] border border-[#C8B6E2]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Poosh / Lemme</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#FCE7F3] border border-[#F9A8D4]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Kylie (Empire)</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#DB2777] border border-[#9D174D]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kylie Family</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#D5BDAF] border border-[#A68A7B]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Other Names</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FCE7F3] border border-[#F9A8D4]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kylie Brands</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-4 h-4 rounded-full bg-[#F5EBE0] border border-[#CCC]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Other Brands</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#D5BDAF] border border-[#A68A7B]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Other Names</span>
         </div>
-        <div className="flex items-center gap-3">
-          <div className="w-3 h-3 rounded-full bg-[#EDEDED] border border-[#DDD]" />
-          <span className="text-xs font-medium uppercase tracking-widest opacity-70">Industries</span>
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-[#F5EBE0] border border-[#CCC]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Other Brands</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#EDEDED] border border-[#DDD]" />
+          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Industries</span>
         </div>
       </div>
     </div>
