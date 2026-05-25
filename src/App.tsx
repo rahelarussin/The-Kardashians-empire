@@ -92,7 +92,7 @@ export default function App() {
               >
                 <div className="flex items-center gap-3">
                   <div 
-                    className={`w-2 h-2 rounded-full ${
+                    className={`w-2 h-2 ${node.type === NodeType.CAUSE ? 'rounded-xs' : 'rounded-full'} ${
                       node.isKimKylieImpact ? 'bg-[#FF91A4] border border-[#FF69B4]' :
                     node.isKendallKylie ? 'bg-[#FF8C69] border border-[#FF1493]' :
                       node.isKimLightRed ? 'bg-[#FFCDCD] border border-[#FF7F7F]' :

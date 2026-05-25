@@ -186,8 +186,20 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       .attr('stroke', (d) => getNodeStroke(d))
       .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
 
-    // Render non-person nodes as circles
-    node.filter((d) => d.type !== NodeType.PERSON)
+    // Render humanitarian / cause nodes as squares (kocka)
+    node.filter((d) => d.type === NodeType.CAUSE)
+      .append('rect')
+      .attr('x', -11)
+      .attr('y', -11)
+      .attr('width', 22)
+      .attr('height', 22)
+      .attr('rx', 3) // rounded corners for polished aesthetic
+      .attr('fill', (d) => getNodeFill(d))
+      .attr('stroke', (d) => getNodeStroke(d))
+      .attr('stroke-width', (d) => (selectedNode?.id === d.id ? 3 : 1.5));
+
+    // Render other non-person, non-cause nodes as circles
+    node.filter((d) => d.type !== NodeType.PERSON && d.type !== NodeType.CAUSE)
       .append('circle')
       .attr('r', (d) => {
         if (d.type === NodeType.COMPANY) return 15;
@@ -245,11 +257,15 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       
       {/* Legend */}
       <div className="absolute top-4 left-4 flex flex-col gap-1.5 pointer-events-none p-2.5 bg-white/50 backdrop-blur-md rounded-xl border border-white/50 shadow-sm overflow-y-auto max-h-[calc(100%-2rem)] max-w-[200px] sm:max-w-[240px]">
-        <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
+        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
           <svg className="w-3 h-3 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
             <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
           </svg>
           <span className="text-[9px] font-extrabold uppercase tracking-wider text-brand-stone">OSOBE (ČOVJEČULJAK)</span>
+        </div>
+        <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
+          <div className="w-2.5 h-2.5 bg-brand-stone rounded-xs" />
+          <span className="text-[9px] font-extrabold uppercase tracking-wider text-brand-stone">HUMANITARNOST (KOCKA)</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-[#FF91A4] border border-[#FF69B4]" />
@@ -268,11 +284,11 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#B91C1C]">Kimoji & Fragrance</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF10F0] border border-[#00FFFF]" />
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF10F0] border border-[#00FFFF]" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF10F0]">Kylie Advocacy</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F1F] border border-[#39FF14]" />
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF5F1F] border border-[#39FF14]" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF5F1F]">Kendall Advocacy</span>
         </div>
         <div className="flex items-center gap-2">
@@ -280,15 +296,15 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#A16207]">Khloud & Podcast</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FAFF00] border border-[#000000]" />
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#FAFF00] border border-[#000000]" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#EAB308]">Khloé Advocacy</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF00FF] border border-[#00FFFF]" />
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF00FF] border border-[#00FFFF]" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF00FF]">Wellness Advocacy</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF3131] border border-[#39FF14]" />
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF3131] border border-[#39FF14]" />
           <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF3131]">Humanitarian Advocacy</span>
         </div>
         <div className="flex items-center gap-2">
