@@ -1,20 +1,40 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Kardashian-Jenner Dynasty Mapping
 
-# Run and deploy your AI Studio app
+An interactive digital network analysis of the Kardashian-Jenner ecosystem, exploring the intersections of reality television, global commerce, and humanitarian advocacy.
 
-This contains everything you need to run your app locally.
+## Project Overview
 
-View your app in AI Studio: https://ai.studio/apps/5dc3831b-ab37-49e8-81c8-37d0de476fb8
+This application utilizes a force-directed graph (D3.js) within a React framework to visualize the complex relationships between the Kardashian-Jenner family members, their businesses, and their social impact.
 
-## Run Locally
+### Key Visual & Functional Pillars
+- **Dynamic Physics Simulation**: Real-time graph simulation managing repulsion and attraction between nodes.
+- **Categorized Hubs**:
+  - **Person Nodes**: Key family figures (Kris, Kim, Khloé, Kourtney, Kendall, Kylie, etc.).
+  - **Company Nodes**: Multi-billion dollar ventures (SKIMS, Kylie Cosmetics, Good American, etc.).
+  - **Industry Nodes**: Segmentation into Beauty, Fashion, Beverages, and Media.
+  - **Cause Nodes**: Visualization of philanthropic and cultural impact.
 
-**Prerequisites:**  Node.js
+## Visual Identity
 
+The interface is built on a "Nude & Clay" aesthetic, reflecting the family's signature branding, punctuated by high-contrast neon accents:
+- **Neon Pink**: Kylie's advocacy and humanitarian work.
+- **Neon Orange**: Kendall's global advocacy.
+- **Neon Yellow**: Khloé's humanitarian efforts.
+- **Light Red/Pink**: Kim's legal reform work and cultural impact.
+- **Gradient (Yellow-Red-Purple)**: Representing the DASH legacy and its multi-sister origins.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Technical Architecture
+
+- **Frontend**: React 18+ powered by Vite.
+- **Visualization**: D3.js for the core relationship engine and SVG rendering.
+- **Styling**: Tailwind CSS for a modern, responsive layout with glassmorphism effects.
+- **Data Model**: A relational TypeScript structure defined in `src/data.ts`.
+
+## Scientific Context
+
+This project serves as a digital humanities study into "Network Centrality" within celebrity culture. It maps how reality TV prominence translates into structural influence across global industries and social reforms.
+
+Detailed analysis can be found in the `/report/report_1.md` file.
+
+---
+*Created as a digital representation of media, commerce, and philanthropy.*
