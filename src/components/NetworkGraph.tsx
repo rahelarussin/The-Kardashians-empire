@@ -225,24 +225,24 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
 
     const netWorthBadge = netWorthNodes.append('g')
       .attr('class', 'net-worth-badge')
-      .attr('transform', 'translate(14, -14)');
+      .attr('transform', 'translate(22, -20)');
 
     netWorthBadge.append('rect')
-      .attr('x', -15)
-      .attr('y', -6)
-      .attr('width', 30)
-      .attr('height', 12)
-      .attr('rx', 2.5)
+      .attr('x', -19)
+      .attr('y', -8)
+      .attr('width', 38)
+      .attr('height', 16)
+      .attr('rx', 4)
       .attr('fill', '#0F172A')
       .attr('stroke', '#FFFFFF')
-      .attr('stroke-width', 1);
+      .attr('stroke-width', 1.5);
 
     netWorthBadge.append('text')
       .text((d) => d.netWorth || '')
       .attr('x', 0)
-      .attr('y', 3)
+      .attr('y', 3.5)
       .attr('text-anchor', 'middle')
-      .attr('font-size', '7px')
+      .attr('font-size', '8px')
       .attr('font-family', 'JetBrains Mono, monospace')
       .attr('font-weight', '700')
       .attr('fill', '#FFFFFF')
