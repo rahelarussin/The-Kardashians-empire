@@ -285,140 +285,176 @@ export const NetworkGraph: React.FC<GraphProps> = ({ data, onNodeClick, selected
       <svg ref={svgRef} className="w-full h-full" />
       
       {/* Legend */}
-      <div className="absolute top-4 left-4 flex flex-col gap-1.5 pointer-events-none p-2.5 bg-white/50 backdrop-blur-md rounded-xl border border-white/50 shadow-sm overflow-y-auto max-h-[calc(100%-2rem)] max-w-[200px] sm:max-w-[240px]">
-        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
-          <svg className="w-3 h-3 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
-            <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
-          </svg>
-          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Roditelji (Veći čovječuljak)</span>
-        </div>
-        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
-          <svg className="w-2.5 h-2.5 text-brand-stone" viewBox="-12 -16 24 30" fill="currentColor">
-            <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
-          </svg>
-          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Djeca (Manji čovječuljak)</span>
-        </div>
-        <div className="flex items-center gap-2 border-b border-black/5 pb-1">
-          <div className="w-5 h-3.5 bg-[#0F172A] border border-[white] rounded flex items-center justify-center shrink-0">
-            <span className="text-[6px] text-white font-mono font-bold leading-none">$M</span>
+      <div className="absolute top-4 left-4 flex flex-col gap-3.5 pointer-events-auto p-3.5 bg-white/75 backdrop-blur-md rounded-2xl border border-white/50 shadow-md overflow-y-auto max-h-[calc(100%-2rem)] w-[240px] sm:w-[260px] cursor-default select-none z-10 transition-all">
+        {/* Section 1: Adult Family Members */}
+        <div className="flex flex-col gap-1.5">
+          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1 flex items-center justify-between">
+            <span>✦ ODRASLI ČLANOVI</span>
+            <span className="opacity-40 text-[7px]">IKONA & NW</span>
           </div>
-          <span className="text-[8px] font-extrabold uppercase tracking-wider text-brand-stone">Prosječni Net Worth</span>
+          
+          <div className="flex items-center gap-2">
+            <svg className="w-3.5 h-3.5 text-brand-stone shrink-0" viewBox="-12 -16 24 30" fill="currentColor">
+              <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
+            </svg>
+            <span className="text-[10px] font-medium text-brand-stone/80">Roditelji / Odrasli</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-4 bg-[#0F172A] border border-white rounded-md flex items-center justify-center shrink-0 shadow-sm">
+              <span className="text-[7px] text-white font-mono font-black leading-none">$M</span>
+            </div>
+            <span className="text-[10px] font-medium text-brand-stone/80">Neto vrijednost (NW)</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-1.5 mt-1 border-t border-black/5 pt-1.5">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#000000] border border-[#000000] shrink-0" />
+              <span className="text-[9px] font-medium text-black">The Momager (Kris)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#B91C1C] border border-[#7F1D1D] shrink-0" />
+              <span className="text-[9px] font-medium text-[#7F1D1D]">Kim & Obitelj</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#DB2777] border border-[#9D174D] shrink-0" />
+              <span className="text-[9px] font-medium text-[#9D174D]">Kylie & Obitelj</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#F97316] border border-[#9A3412] shrink-0" />
+              <span className="text-[9px] font-medium text-[#9A3412]">Kendall</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#EAB308] border border-[#854D0E] shrink-0" />
+              <span className="text-[9px] font-medium text-[#854D0E]">Khloé & Obitelj</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#7C5295] border border-[#4B2C5E] shrink-0" />
+              <span className="text-[9px] font-medium text-[#4B2C5E]">Kourtney & Obitelj</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#2563EB] border border-[#1E3A8A] shrink-0" />
+              <span className="text-[9px] font-medium text-[#1E3A8A]">Rob & Obitelj</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#6B7280] border border-[#374151] shrink-0" />
+              <span className="text-[9px] font-medium opacity-70">Robert Sr. (Otac)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FF2D55] border border-[#E01E44] shrink-0" />
+              <span className="text-[9px] font-medium opacity-70">Caitlyn Jenner</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#D5BDAF] border border-[#A68A7B] shrink-0" />
+              <span className="text-[9px] font-medium opacity-60">Ostali članovi</span>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2 border-b border-black/5 pb-1 mb-1">
-          <div className="w-2.5 h-2.5 bg-brand-stone rounded-xs" />
-          <span className="text-[9px] font-extrabold uppercase tracking-wider text-brand-stone">HUMANITARNOST (KOCKA)</span>
+
+        {/* Section 2: Children */}
+        <div className="flex flex-col gap-1.5">
+          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1">
+            <span>✦ DJECA (MLAĐI NARAŠTAJ)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg className="w-2.5 h-2.5 text-brand-stone shrink-0" viewBox="-12 -16 24 30" fill="currentColor">
+              <path d="M -12,11 C -12,4.5 -6.5,1.5 0,1.5 C 6.5,1.5 12,4.5 12,11 L 12,14 L -12,14 Z M 0,-4.5 A 5.5,5.5 0 1,0 0,-15.5 A 5.5,5.5 0 1,0 0,-4.5" />
+            </svg>
+            <span className="text-[10px] font-semibold text-brand-stone/80">Svi unuci obitelji (Manji)</span>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF91A4] border border-[#FF69B4]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF69B4]">Cultural Impact</span>
+
+        {/* Section 3: Brands and Industries */}
+        <div className="flex flex-col gap-1.5">
+          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1">
+            <span>✦ BRENDOVI & INDUSTRIJA</span>
+          </div>
+          <div className="grid grid-cols-1 gap-1.5">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FEE2E2] border border-[#FCA5A5] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">SKIMS / SKKN (Kim)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FCE7F3] border border-[#F9A8D4] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Kylie Brands (Kozmetika)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FFEDD5] border border-[#FED7AA] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">818 Tequila (Kendall)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FEF08A] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Good American (Khloé)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#EBE4F5] border border-[#C8B6E2] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Poosh / Lemme (Kourt)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#DBEAFE] border border-[#BFDBFE] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Arthur George (Rob)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#F5EBE0] border border-[#CCC] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/70">Ostali brendovi</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-[#EDEDED] border border-[#DDD] shrink-0 ml-0.5" />
+              <span className="text-[9px] font-medium text-brand-stone/60">Tržišne industrijske grane</span>
+            </div>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full border border-black" style={{ background: 'linear-gradient(135deg, #FAFF00 0%, #FF3131 50%, #FF00FF 100%)' }} />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-black">DASH</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF8C69] border border-[#FF1493]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF8C69]">Kendall + Kylie</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FFCDCD] border border-[#FF7F7F]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#B91C1C]">Kimoji & Fragrance</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF10F0] border border-[#00FFFF]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF10F0]">Kylie Advocacy</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF5F1F] border border-[#39FF14]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF5F1F]">Kendall Advocacy</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FACC15]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#A16207]">Khloud & Podcast</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-xs bg-[#FAFF00] border border-[#000000]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#EAB308]">Khloé Advocacy</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF00FF] border border-[#00FFFF]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF00FF]">Wellness Advocacy</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-xs bg-[#FF3131] border border-[#39FF14]" />
-          <span className="text-[9px] font-bold uppercase tracking-wider text-[#FF3131]">Humanitarian Advocacy</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#000000] border border-[#000000]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-90 text-[black]">The Momager (Kris)</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#6B7280] border border-[#374151]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Robert Sr.</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FF2D55] border border-[#E01E44]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Caitlyn</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#2563EB] border border-[#1E3A8A]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Rob & Family</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#DBEAFE] border border-[#BFDBFE]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Arthur George</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#EAB308] border border-[#854D0E]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Khloe & Family</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FEF08A]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Good American</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#F97316] border border-[#9A3412]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kendall</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FFEDD5] border border-[#FED7AA]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">818 Tequila</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#B91C1C] border border-[#7F1D1D]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kim & Family</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FEE2E2] border border-[#FCA5A5]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">SKIMS / SKKN</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#7C5295] border border-[#4B2C5E]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kourtney & Family</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#EBE4F5] border border-[#C8B6E2]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Poosh / Lemme</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#DB2777] border border-[#9D174D]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kylie Family</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#FCE7F3] border border-[#F9A8D4]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Kylie Brands</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#D5BDAF] border border-[#A68A7B]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Other Names</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#F5EBE0] border border-[#CCC]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Other Brands</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-[#EDEDED] border border-[#DDD]" />
-          <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">Industries</span>
+
+        {/* Section 4: Humanitarian and Activism */}
+        <div className="flex flex-col gap-1.5">
+          <div className="text-[9px] font-black uppercase tracking-widest text-brand-stone border-b border-black/5 pb-1 mb-1 flex items-center justify-between">
+            <span>✦ HUMANITARNOST & UTJECAJ</span>
+            <span className="px-1 py-0.5 bg-brand-stone/10 text-[7px] font-bold text-brand-stone rounded">KOCKA</span>
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <div className="w-2.5 h-2.5 bg-brand-stone rounded-xs shrink-0" />
+            <span className="text-[10px] font-semibold text-brand-stone/90">Aktivistički rad (Kocka)</span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-1.5 mt-1 border-t border-black/5 pt-1.5">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-xs bg-[#FF10F0] border border-[#00FFFF] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Kylie Advocacy / Smile Train</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-xs bg-[#FF5F1F] border border-[#39FF14] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Kendall Charity / Water</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-xs bg-[#FAFF00] border border-[#000000] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Khloé Cyberbullying & dječji domovi</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-xs bg-[#FF00FF] border border-[#00FFFF] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Wellness regulativa (Kourtney)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-xs bg-[#FF3131] border border-[#39FF14] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Reforma Pravosuđa (Kim)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FF91A4] border border-[#FF69B4] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Kulturološki Utjecaj (Krug)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FFCDCD] border border-[#FF7F7F] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Kimoji & Mirisi (Krug)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FEF9C3] border border-[#FACC15] shrink-0" />
+              <span className="text-[9px] font-medium text-brand-stone/85">Khloud & Podcast (Krug)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full border border-black shrink-0" style={{ background: 'linear-gradient(135deg, #FAFF00 0%, #FF3131 50%, #FF00FF 100%)' }} />
+              <span className="text-[9px] font-medium text-brand-stone/85">Zajednički brend DASH (Krug)</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
