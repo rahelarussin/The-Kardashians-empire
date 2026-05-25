@@ -1,5 +1,7 @@
 # Kardashian-Jenner Dynasty Mapping
 
+![Kardashian-Jenner Network Ecosystem Banner](./src/assets/images/network_banner_1779712781136.png)
+
 An interactive digital network analysis of the Kardashian-Jenner ecosystem, exploring the intersections of reality television, global commerce, and humanitarian advocacy.
 
 ## Project Overview
